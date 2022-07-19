@@ -1,0 +1,24 @@
+{
+  "type": "module",
+  "name": "imagae-minify",
+  "version": "1.0.0",
+  "description": "script for minimize images",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Me",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^7.0.0",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-webp": "^4.0.1",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^10.0.1"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}
