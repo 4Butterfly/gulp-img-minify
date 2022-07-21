@@ -9,6 +9,7 @@ import webp from 'gulp-webp';
 import {
   deleteAsync
 } from 'del';
+import dom from 'gulp-dom';
 // const imageminGifsicle = require('imagemin-gifsicle');
 
 
@@ -22,7 +23,7 @@ gulp.task('clean-result', function () {
 });
 
 gulp.task('minify-img', function () {
-  return gulp.src('src/images/*')
+  return gulp.src('src/assets/*')
     .pipe(imagemin([
       gifsicle({
         interlaced: true
@@ -34,7 +35,7 @@ gulp.task('minify-img', function () {
       optipng({
         optimizationLevel: 5
       }),
-      
+
       // svgo({
       //   plugins: [{
       //       removeViewBox: true
@@ -51,10 +52,21 @@ gulp.task('minify-img', function () {
 gulp.task('convert-to-webp', function () {
   return gulp.src('result/images/*')
     .pipe(webp())
-    .pipe(gulp.dest('result/images/webp'))
+    .pipe(gulp.dest('result/land/assets'))
 });
-
-gulp.task('start', gulp.series('clean-result', 'minify-img', 'convert-to-webp'))
+gulp.task('change-html', function () {
+  return gulp.src('src/index.html')
+    .pipe(dom(function () {
+      let regex = /\.(gif|jpe?g|tiff?|png|bmp)$/i;
+      let new_src;
+      return this.querySelectorAll('img').forEach(img => {
+        new_src = img.getAttribute('src').replace(regex, '.webp');
+        img.setAttribute('src', new_src)
+      });
+    }))
+    .pipe(gulp.dest('result/land'));
+});
+gulp.task('start', gulp.series('clean-result', 'minify-img', 'convert-to-webp', 'change-html'))
 // export default () => (
 //   console.log("Use 'Gulp start'")
 // )

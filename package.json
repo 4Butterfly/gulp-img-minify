@@ -11,12 +11,14 @@
   "license": "ISC",
   "devDependencies": {
     "del": "^7.0.0",
+    "gulp-dom": "^1.0.0",
     "gulp-imagemin": "^8.0.0",
     "gulp-webp": "^4.0.1",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-mozjpeg": "^10.0.0",
     "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^10.0.1"
+    "imagemin-svgo": "^10.0.1",
+    "imagemin-webp": "^7.0.0"
   },
   "dependencies": {
     "gulp": "^4.0.2"
